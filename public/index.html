@@ -41,6 +41,33 @@
         </div>
     </div>
     
-    <script src="script.js"></script>
+    <script src="script.js"><script type="module">
+  import { OpenAIRealtime } from 'https://cdn.skypack.dev/@openai/realtime';
+
+  async function fetchRealtimeToken() {
+    console.log('[Realtime] fetchRealtimeToken called');
+    const res = await fetch('/.netlify/functions/getRealtimeToken', { method: 'POST' });
+    console.log('[Realtime] token endpoint status:', res.status);
+    const data = await res.json();
+    console.log('[Realtime] token response:', data);
+    return data.token;
+  }
+
+  (async () => {
+    try {
+      console.log('[Realtime] init start');
+      window.realtime = new OpenAIRealtime({ auth: fetchRealtimeToken });
+      console.log('[Realtime] after new OpenAIRealtime', window.realtime);
+      await window.realtime.waitForReady();
+      console.log('[Realtime] waitForReady done:', window.realtime);
+      // ボタンを有効化
+      document.getElementById('send-button').disabled      = false;
+      document.getElementById('start-voice-chat').disabled = false;
+    } catch (e) {
+      console.error('[Realtime] init error:', e);
+    }
+  })();
+</script>
+
 </body>
 </html>
