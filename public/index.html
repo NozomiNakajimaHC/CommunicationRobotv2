@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIアバターチャット</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AIアバターチャット</h1>
+        </header>
+        
+        <main>
+            <div class="avatar-container">
+                <div class="avatar">
+                    <!-- アバター画像 -->
+                    <img id="avatar-image" src="images/avatar-neutral.png" alt="アバター">
+                </div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- メッセージがここに表示されます -->
+                    <div class="message ai-message">
+                        <p>こんにちは！何か話しかけてみてください。</p>
+                    </div>
+                </div>
+                
+                <div class="user-input">
+                    <input type="text" id="user-message" placeholder="メッセージを入力...">
+                    <button id="send-button">送信</button>
+                    <button id="voice-button">🎤</button>
+                </div>
+            </div>
+        </main>
+        
+        <div class="status-indicator">
+            <div id="status">準備完了</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
